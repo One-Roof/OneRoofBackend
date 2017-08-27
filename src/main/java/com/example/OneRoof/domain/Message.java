@@ -15,6 +15,7 @@ public class Message {
     private int id;
     private String content;
     private Date date;
+    private int userid;
 
     public Message() {}
 
@@ -43,4 +44,10 @@ public class Message {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    public int getUserid() { return userid; }
+
+    public void setUserid(int userid) { this.userid = userid; }
 }

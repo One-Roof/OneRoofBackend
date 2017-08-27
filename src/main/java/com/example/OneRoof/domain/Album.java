@@ -18,6 +18,7 @@ public class Album {
     private String title;
     private Date date;
     private List<Image> images;
+    private int userid;
 
     public Album() {}
 
@@ -54,4 +55,10 @@ public class Album {
     public void setImages(List<Image> images) {
         this.images = images;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    public int getUserid() { return userid; }
+
+    public void setUserid(int userid) { this.userid = userid; }
 }
