@@ -15,8 +15,7 @@ public class Family {
     private int id;
     private String familyName;
 
-    public Family() {
-    }
+    public Family() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -18,6 +18,8 @@ public class FamilyMember {
     private String email;
     private String phone;
 
+    public FamilyMember() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
@@ -26,9 +28,6 @@ public class FamilyMember {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public FamilyMember() {
     }
 
     @Column(name = "firstname")
