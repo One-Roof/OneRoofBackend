@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Data
 @Entity
-//@Table(name = "album")
+@Table(name = "album")
 public class Album {
 
     private int id;
