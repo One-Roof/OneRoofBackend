@@ -17,8 +17,8 @@ public class User {
     private String email;
     private String password;
     private int age;
-    private boolean isAdmin;
-    private boolean isChild;
+    private boolean admin;
+    private boolean child;
 
     public User() {}
 
@@ -64,19 +64,13 @@ public class User {
         this.age = age;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
+    @Column(name = "isadmin")
+    public boolean isAdmin() { return admin; }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
+    public void setAdmin(boolean admin) { this.admin = admin; }
 
-    public boolean isChild() {
-        return isChild;
-    }
+    @Column(name = "ischild")
+    public boolean isChild() { return child; }
 
-    public void setChild(boolean child) {
-        isChild = child;
-    }
+    public void setChild(boolean child) { this.child = child; }
 }

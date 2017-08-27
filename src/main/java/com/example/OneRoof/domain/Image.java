@@ -17,7 +17,7 @@ public class Image {
     private String title;
     private Date date;
     private String imageUrl;
-    private int userid;
+//    private int userid;
 
     public Image() {}
 
@@ -55,9 +55,9 @@ public class Image {
         this.imageUrl = imageUrl;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "userid")
-    public int getUserid() { return userid; }
-
-    public void setUserid(int userid) { this.userid = userid; }
+//    @ManyToOne(targetEntity = User.class)
+//    @JoinColumn(name = "userid")
+//    public int getUserid() { return userid; }
+//
+//    public void setUserid(int userid) { this.userid = userid; }
 }

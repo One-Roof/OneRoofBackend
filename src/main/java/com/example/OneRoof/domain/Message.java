@@ -15,9 +15,9 @@ public class Message {
     private int id;
     private String content;
     private Date date;
-    private int userid;
+//    private int userid;
 
-    public Message() {}
+//    public Message() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,9 +45,9 @@ public class Message {
         this.date = date;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "userid")
-    public int getUserid() { return userid; }
-
-    public void setUserid(int userid) { this.userid = userid; }
+//    @ManyToOne (targetEntity = User.class)
+//    @JoinColumn(name = "userid")
+//    public int getUserid() { return userid; }
+//
+//    public void setUserid(int userid) { this.userid = userid; }
 }

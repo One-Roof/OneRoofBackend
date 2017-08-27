@@ -17,8 +17,9 @@ public class Album {
     private int id;
     private String title;
     private Date date;
-    private List<Image> images;
-    private int userid;
+//    private List<Image> images;
+//    private int userid;
+//    private int imageid;
 
     public Album() {}
 
@@ -48,17 +49,23 @@ public class Album {
         this.date = date;
     }
 
-    public List<Image> getImages() {
-        return images;
-    }
+//    public List<Image> getImages() {
+//        return images;
+//    }
+//
+//    public void setImages(List<Image> images) {
+//        this.images = images;
+//    }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "userid")
-    public int getUserid() { return userid; }
-
-    public void setUserid(int userid) { this.userid = userid; }
+//    @ManyToOne(targetEntity = User.class)
+//    @JoinColumn(name = "userid")
+//    public int getUserid() { return userid; }
+//
+//    public void setUserid(int userid) { this.userid = userid; }
+//
+//    @ManyToOne(targetEntity = Image.class)
+//    @JoinColumn(name = "imageid")
+//    public int getImageid() { return imageid; }
+//
+//    public void setImageid(int imageid) { this.imageid = imageid; }
 }
