@@ -60,10 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://thawing-wave-85503.herokuapp.com/api/*"));
+        configuration.setAllowedOrigins(Arrays.asList("https://thawing-wave-85503.herokuapp.com/api/**"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/*", configuration);
+        source.registerCorsConfiguration("/api/**", configuration);
         return source;
     }
 }
