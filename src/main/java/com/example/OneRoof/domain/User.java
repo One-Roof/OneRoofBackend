@@ -3,6 +3,7 @@ package com.example.OneRoof.domain;
 import lombok.Data;
 import lombok.ToString;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -13,12 +14,13 @@ import javax.persistence.*;
 @Entity
 @ToString(exclude = "password")
 @Table(name = "appuser")
+@JsonIgnoreProperties("password")
 public class User {
 
     private int id;
     private String name;
     private String email;
-    private @JsonIgnore String password;
+    private String password;
     private int age;
     private boolean admin;
     private boolean child;
