@@ -43,4 +43,7 @@ public class OneRoofController {
     String admin() {
         return "test";
     }
+
+    @GetMapping("/user")
+    String user() { return "test"; }
 }

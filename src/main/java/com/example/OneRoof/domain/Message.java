@@ -12,12 +12,12 @@ import java.util.Date;
 @Entity
 @Table(name = "message")
 public class Message {
+
     private int id;
     private String content;
     private Date date;
-//    private int userid;
 
-//    public Message() {}
+    public Message() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

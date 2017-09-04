@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
+                    .antMatchers("/user").hasRole("USER")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -53,8 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(this.dataSource)
-                .usersByUsernameQuery("SELECT username, password, enabled FROM user WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, authority FROM authority WHERE username = ?");
+                .usersByUsernameQuery("SELECT email, password, isadmin FROM appuser WHERE email = ?")
+                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
     }
 
     @Bean

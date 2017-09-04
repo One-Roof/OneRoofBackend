@@ -17,7 +17,6 @@ public class Image {
     private String title;
     private Date date;
     private String imageUrl;
-//    private int userid;
 
     public Image() {}
 
