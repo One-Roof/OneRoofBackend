@@ -33,12 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        http.authorizeRequests().antMatchers(HttpMethod.POST).permitAll();
+
         http
                 .authorizeRequests()
                     .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user").hasRole("USER")
-                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
