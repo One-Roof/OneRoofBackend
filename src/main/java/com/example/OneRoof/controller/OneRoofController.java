@@ -39,6 +39,14 @@ public class OneRoofController {
         return "new_user";
     }
 
+    @GetMapping("/")
+    String test() { return "index"; }
+
+//    @PostMapping("/login")
+//    String loginPost() {
+//        return "test";
+//    }
+
     @GetMapping("/admin")
     String admin() {
         return "test";
