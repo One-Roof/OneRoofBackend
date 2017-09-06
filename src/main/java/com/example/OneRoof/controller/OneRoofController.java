@@ -25,8 +25,8 @@ public class OneRoofController {
         return "test";
     }
 
-//    @GetMapping("/login")
-//    String login() { return "login"; }
+    @GetMapping("/login")
+    String login() { return "login"; }
 
     @GetMapping("/signup")
     String newUser() { return "new_user"; }
@@ -42,10 +42,10 @@ public class OneRoofController {
     @GetMapping("/")
     String test() { return "index"; }
 
-//    @PostMapping("/login")
-//    String loginPost() {
-//        return "test";
-//    }
+    @PostMapping("/login")
+    String loginPost() {
+        return "test";
+    }
 
     @GetMapping("/admin")
     String admin() {
