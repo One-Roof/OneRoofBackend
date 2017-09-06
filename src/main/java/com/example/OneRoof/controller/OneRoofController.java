@@ -25,8 +25,8 @@ public class OneRoofController {
         return "test";
     }
 
-    @GetMapping("/login")
-    String login() { return "login"; }
+//    @GetMapping("/login")
+//    String login() { return "login"; }
 
     @GetMapping("/signup")
     String newUser() { return "new_user"; }
