@@ -60,9 +60,9 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests().anyRequest().authenticated();
     }
 
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
-    }
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+//    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
