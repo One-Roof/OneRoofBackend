@@ -39,33 +39,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .csrf()
-                .disable()
-                .cors()
-                .and()
-                .httpBasic()
-                .and()
+                .csrf().disable()
+                .cors().and()
+                .httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
+                .anyRequest().authenticated().and()
                 .formLogin()
                 .loginPage("/login")
-                .permitAll()
-                .and()
+                .permitAll().and()
                 .logout()
                 .permitAll()
                 .logoutSuccessUrl("/login");
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication().dataSource(this.dataSource)
-//                .usersByUsernameQuery("SELECT email, password, isadmin FROM appuser WHERE email = ?")
-//                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
-//    }
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(this.dataSource)
+                .usersByUsernameQuery("SELECT email, password, isadmin FROM appuser WHERE email = ?")
+                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
+    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
