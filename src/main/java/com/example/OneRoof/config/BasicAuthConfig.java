@@ -23,7 +23,7 @@ import java.util.Arrays;
  * Created by Ethan on 9/12/17.
  */
 @Configuration
-//@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class BasicAuthConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
