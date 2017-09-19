@@ -34,13 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers(HttpMethod.POST).permitAll();
-
         http
                 .authorizeRequests()
-
                     .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
                     .antMatchers(HttpMethod.OPTIONS).permitAll()
+                    .antMatchers(HttpMethod.POST).permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user").hasRole("USER")
                     .anyRequest().authenticated()
@@ -63,12 +61,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(this.dataSource)
-                .usersByUsernameQuery("SELECT email, password, isadmin FROM appuser WHERE email = ?")
-                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
-    }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.jdbcAuthentication().dataSource(this.dataSource)
+//                .usersByUsernameQuery("SELECT email, password, isadmin FROM appuser WHERE email = ?")
+//                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
+//    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
