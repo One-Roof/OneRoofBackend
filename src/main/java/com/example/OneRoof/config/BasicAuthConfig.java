@@ -54,12 +54,12 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter{
 //                    .permitAll()
 //                    .logoutSuccessUrl("/login");
         http
-                .authorizeRequests()
-                    .antMatchers("/", "/api", "/api/*").permitAll().and()
                 .cors().and()
                 .csrf().disable()
                 .httpBasic().and()
-                .authorizeRequests().anyRequest().authenticated();
+                .authorizeRequests()
+                    .antMatchers("/", "/api", "/api/*").permitAll()
+                    .anyRequest().authenticated();
     }
 
     public void configure(WebSecurity web) throws Exception {
@@ -76,7 +76,7 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter{
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("/**"));
+        configuration.setAllowedOrigins(Arrays.asList("**"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
