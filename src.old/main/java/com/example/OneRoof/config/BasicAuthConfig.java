@@ -3,9 +3,12 @@ package com.example.OneRoof.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -17,12 +20,11 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 
 /**
- * Created by Ethan on 8/16/17.
+ * Created by Ethan on 9/12/17.
  */
-
 @Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//@Order(Ordered.HIGHEST_PRECEDENCE)
+public class BasicAuthConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
     OAuth2ClientContext oAuth2ClientContext;
@@ -33,26 +35,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers(HttpMethod.POST).permitAll();
+//        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
 
+//        http
+//                .authorizeRequests()
+//                    .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
+//                    .antMatchers("/admin").hasRole("ADMIN")
+//                    .antMatchers("/user").hasRole("USER")
+//                    .anyRequest().authenticated()
+//                    .and()
+//                .cors()
+//                    .and()
+//                .httpBasic()
+//                    .and()
+//                .csrf()
+//                    .disable()
+//                .logout()
+//                    .permitAll()
+//                    .logoutSuccessUrl("/login");
         http
+                .cors().and()
+                .csrf().disable()
+                .httpBasic().and()
                 .authorizeRequests()
-                    .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
-                    .antMatchers("/admin").hasRole("ADMIN")
-                    .antMatchers("/user").hasRole("USER")
-                    .anyRequest().authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
-                .cors()
-                    .and()
-                .csrf()
-                    .disable()
-                .logout()
-                    .permitAll()
-                    .logoutSuccessUrl("/login");
+                    .antMatchers("/", "/api", "/api/*").permitAll()
+                    .anyRequest().authenticated();
+    }
+
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
 
     @Autowired
@@ -63,12 +74,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("**"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 }

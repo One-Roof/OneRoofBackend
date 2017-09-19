@@ -3,12 +3,9 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
-//import org.springframework.core.Ordered;
-//import org.springframework.core.annotation.Order;
 //import org.springframework.http.HttpMethod;
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.builders.WebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -20,11 +17,12 @@
 //import java.util.Arrays;
 //
 ///**
-// * Created by Ethan on 9/12/17.
+// * Created by Ethan on 8/16/17.
 // */
+//
 //@Configuration
-//@Order(Ordered.HIGHEST_PRECEDENCE)
-//public class BasicAuthConfig extends WebSecurityConfigurerAdapter{
+//@EnableWebSecurity
+//public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //    @Autowired
 //    OAuth2ClientContext oAuth2ClientContext;
@@ -35,35 +33,26 @@
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //
-////        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
+//        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
 //
-////        http
-////                .authorizeRequests()
-////                    .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
-////                    .antMatchers("/admin").hasRole("ADMIN")
-////                    .antMatchers("/user").hasRole("USER")
-////                    .anyRequest().authenticated()
-////                    .and()
-////                .cors()
-////                    .and()
-////                .httpBasic()
-////                    .and()
-////                .csrf()
-////                    .disable()
-////                .logout()
-////                    .permitAll()
-////                    .logoutSuccessUrl("/login");
 //        http
-//                .cors().and()
-//                .csrf().disable()
-//                .httpBasic().and()
 //                .authorizeRequests()
-//                    .antMatchers("/", "/api", "/api/*").permitAll()
-//                    .anyRequest().authenticated();
-//    }
-//
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+//                    .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
+//                    .antMatchers("/admin").hasRole("ADMIN")
+//                    .antMatchers("/user").hasRole("USER")
+//                    .anyRequest().authenticated()
+//                    .and()
+//                .cors()
+//                    .and()
+//                .formLogin()
+////                    .loginPage("/login")
+//                    .permitAll()
+//                    .and()
+//                .csrf()
+//                    .disable()
+//                .logout()
+//                    .permitAll()
+//                    .logoutSuccessUrl("/login");
 //    }
 //
 //    @Autowired
@@ -74,7 +63,7 @@
 //    }
 //
 //    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
+//    CorsConfigurationSource corsConfigurationSource() {
 //        CorsConfiguration configuration = new CorsConfiguration();
 //        configuration.setAllowedOrigins(Arrays.asList("**"));
 //        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
@@ -82,5 +71,4 @@
 //        source.registerCorsConfiguration("/**", configuration);
 //        return source;
 //    }
-//
 //}

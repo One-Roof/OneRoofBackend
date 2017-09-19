@@ -5,6 +5,7 @@ import com.example.OneRoof.service.FamilyMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,7 @@ public class OneRoofController {
         return "new_user";
     }
 
+//    @CrossOrigin(origins="*", maxAge = 3600)
     @GetMapping("/")
     String test() { return "index"; }
 
