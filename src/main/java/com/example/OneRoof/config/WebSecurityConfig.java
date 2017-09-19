@@ -37,10 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
+                .csrf()
+                    .disable()
+                .cors()
+                    .and()
                 .authorizeRequests()
                     .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
-                    .antMatchers(HttpMethod.OPTIONS).permitAll()
-                    .antMatchers(HttpMethod.POST).permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user").hasRole("USER")
                     .anyRequest().authenticated()
@@ -49,19 +51,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                     .and()
-                .cors()
-                    .and()
-                .csrf()
-                    .disable()
                 .logout()
                     .permitAll()
                     .logoutSuccessUrl("/login");
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+//    }
 
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -70,21 +68,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
 //    }
 
-    @Configuration
-    public class WebConfig extends WebMvcConfigurerAdapter {
-
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/**")
-                    .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
-        }
-    }
-
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "HEAD"));
+        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
