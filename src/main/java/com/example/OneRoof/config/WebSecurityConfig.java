@@ -13,6 +13,8 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -67,6 +69,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .usersByUsernameQuery("SELECT email, password, isadmin FROM appuser WHERE email = ?")
 //                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
 //    }
+
+    @Configuration
+    public class WebConfig extends WebMvcConfigurerAdapter {
+
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/**")
+                    .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
+        }
+    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
