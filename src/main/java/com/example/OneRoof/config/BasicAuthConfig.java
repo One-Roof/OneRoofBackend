@@ -54,15 +54,17 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter{
 //                    .permitAll()
 //                    .logoutSuccessUrl("/login");
         http
+                .authorizeRequests()
+                    .antMatchers("/", "/api", "/api/*").permitAll().and()
                 .cors().and()
                 .csrf().disable()
                 .httpBasic().and()
                 .authorizeRequests().anyRequest().authenticated();
     }
 
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
-//    }
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
