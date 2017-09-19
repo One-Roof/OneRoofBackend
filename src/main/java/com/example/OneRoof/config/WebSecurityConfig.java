@@ -27,8 +27,8 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    OAuth2ClientContext oAuth2ClientContext;
+    @Autowired
+    OAuth2ClientContext oAuth2ClientContext;
 
     @Autowired
     private DataSource dataSource;
@@ -38,28 +38,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf()
-                    .disable()
+                .disable()
                 .cors()
-                    .and()
+                .and()
                 .authorizeRequests()
-                    .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
-                    .antMatchers("/admin").hasRole("ADMIN")
-                    .antMatchers("/user").hasRole("USER")
-                    .anyRequest().authenticated()
-                    .and()
+                .antMatchers("/", "/newuser", "/signup", "/api", "/api/*").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/user").hasRole("USER")
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
+                .loginPage("/login")
+                .permitAll()
+                .and()
                 .logout()
-                    .permitAll()
-                    .logoutSuccessUrl("/login");
+                .permitAll()
+                .logoutSuccessUrl("/login");
     }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
-//    }
 
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
