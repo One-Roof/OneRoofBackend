@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
 
-    @GetMapping
+    @GetMapping("/something")
     public @ResponseBody User get(HttpServletResponse res) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
