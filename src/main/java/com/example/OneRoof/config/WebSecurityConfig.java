@@ -58,8 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(this.dataSource)
-                .usersByUsernameQuery("SELECT email, password, isadmin FROM appuser WHERE email = ?")
-                .authoritiesByUsernameQuery("SELECT email, authority FROM authority WHERE email = ?");
+                .usersByUsernameQuery("SELECT username, password, isadmin FROM appuser WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, authority FROM authority WHERE username = ?");
     }
 
     @Bean
