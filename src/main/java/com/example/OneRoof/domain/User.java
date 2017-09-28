@@ -15,7 +15,9 @@ import javax.persistence.*;
 public class User {
 
     private int id;
-    private String name;
+    private String username;
+    private String firstName;
+    private String lastName;
     private String email;
     @com.fasterxml.jackson.annotation.JsonIgnore private String password;
     private int age;
@@ -35,12 +37,22 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
+
+    @Column(name = "firstname")
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    @Column(name = "lastname")
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     public String getEmail() {
         return email;
