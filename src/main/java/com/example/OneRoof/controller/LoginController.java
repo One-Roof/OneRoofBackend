@@ -11,8 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class LoginController {
+
+    @GetMapping
+    public @ResponseBody User get(HttpServletResponse res) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = new User();
+        user.setName(name);
+
+        return user;
+    }
 
     @PostMapping("/something")
     public @ResponseBody
