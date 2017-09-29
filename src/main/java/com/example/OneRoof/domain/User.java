@@ -19,7 +19,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    @com.fasterxml.jackson.annotation.JsonIgnore private String password;
+//   @com.fasterxml.jackson.annotation.JsonIgnore
+    private String password;
     private int age;
     private boolean admin;
     private boolean child;
