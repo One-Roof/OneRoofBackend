@@ -10,9 +10,9 @@ import java.util.List;
  */
 @Service
 public interface AlbumService {
-    Album add(Album familyMember);
-    void add(List<Album> familyMembers);
-    void update(Album familyMember);
+    Album add(Album album);
+    void add(List<Album> albums);
+    void update(Album album);
     Album getById(int id);
     List<Album> get();
     void delete(int id);
