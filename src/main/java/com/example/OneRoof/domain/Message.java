@@ -44,7 +44,7 @@ public class Message {
         this.date = date;
     }
 
-//    @ManyToOne
+    @ManyToOne
     @Column(name = "userid")
     public String getUser() {
         System.out.println(user.getUsername());
