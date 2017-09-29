@@ -3,6 +3,7 @@ package com.example.OneRoof.domain;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "authority")
 public class Authority {
 
+    @Id
     private String username;
     private String authority;
 
