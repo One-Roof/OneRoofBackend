@@ -16,6 +16,7 @@ public class Message {
     private int id;
     private String content;
     private Date date;
+    private User user;
 
     public Message() {}
 
@@ -43,9 +44,12 @@ public class Message {
         this.date = date;
     }
 
-//    @ManyToOne (targetEntity = User.class)
-//    @JoinColumn(name = "userid")
-//    public int getUserid() { return userid; }
-//
-//    public void setUserid(int userid) { this.userid = userid; }
+//    @ManyToOne
+    @Column(name = "userid")
+    public String getUser() {
+        System.out.println(user.getUsername());
+        return "hello";
+    }
+
+    public void setUser(User user) { this.user = user; }
 }
