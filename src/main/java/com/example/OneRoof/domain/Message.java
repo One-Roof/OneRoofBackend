@@ -45,7 +45,7 @@ public class Message {
     }
 
     @ManyToOne
-    @Column(name = "userid")
+    @JoinColumn(name = "userid")
     public String getUser() {
         System.out.println(user.getUsername());
         return "hello";
