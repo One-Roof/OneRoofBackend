@@ -2,8 +2,12 @@ package com.example.OneRoof.domain;
 
 import lombok.Data;
 import lombok.ToString;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Ethan on 8/18/17.
@@ -24,6 +28,7 @@ public class User {
     private int age;
     private boolean admin;
     private boolean child;
+    private Set<Message> messages;
 
     public User() {}
 
@@ -88,4 +93,13 @@ public class User {
     public boolean isChild() { return child; }
 
     public void setChild(boolean child) { this.child = child; }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
 }

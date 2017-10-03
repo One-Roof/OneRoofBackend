@@ -1,6 +1,8 @@
 package com.example.OneRoof.domain;
 
 import lombok.Data;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -46,9 +48,8 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "userid")
-    public User getUser() {
-        return user;
-    }
+    @JsonBackReference
+    public User getUser() { return user; }
 
     public void setUser(User user) { this.user = user; }
 }
